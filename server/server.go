@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
@@ -15,6 +16,7 @@ type Server struct {
 	srv             *http.Server
 	l               *log.Logger
 	shutdownTimeout time.Duration
+	templates       *template.Template
 }
 
 // Run starts the web server and handles graceful shutdown.
@@ -56,5 +58,6 @@ func NewServer() *Server {
 		shutdownTimeout: 30 * time.Second,
 	}
 	s.RegisterRoutes(sm)
+	s.ParseTemplates()
 	return s
 }

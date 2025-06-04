@@ -1,13 +1,14 @@
 package server
 
 import (
-	"fmt"
 	"net/http"
 )
 
+const tplHome = "home.html"
+
 // Home serves the home page content.
 func (s *Server) Home(w http.ResponseWriter, r *http.Request) {
-	_, err := fmt.Fprint(w, "hello, world!")
+	err := s.templates.ExecuteTemplate(w, tplHome, nil)
 	if err != nil {
 		s.l.Printf("Error writing response %q", err)
 	}
