@@ -4,7 +4,7 @@ import (
 	"net/http"
 )
 
-const tplHome = "home.html"
+const tplHome = "home.gohtml"
 
 // Home serves the home page content.
 func (s *Server) Home(w http.ResponseWriter, r *http.Request) {
