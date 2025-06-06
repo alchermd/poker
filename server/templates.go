@@ -9,10 +9,12 @@ const tplBase = "base.gohtml"
 // Partial templates
 const tplPartialRoot = tplRoot + "/partials"
 const tplPartialNavbar = "navbar.gohtml"
+const tplPartialLogo = "logo.gohtml"
 
 func (s *Server) ParseTemplates() {
 	tplPartials := []string{
 		tplPartialRoot + "/" + tplPartialNavbar,
+		tplPartialRoot + "/" + tplPartialLogo,
 	}
 	tpls := []string{
 		tplRoot + "/" + tplBase,

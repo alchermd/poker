@@ -3,5 +3,16 @@
 {{define "title"}}home{{end}}
 
 {{define "content"}}
-<h1>Hello, World!</h1>
+    <div class="px-4 py-5 my-5 text-center">
+        {{template "logo" "h1"}}
+        <h1 class="display-6 fw-bold text-body-emphasis mb-5">
+            Dead simple tracker <br/>
+            for your Poker game nights.
+        </h1>
+        <div class="col-lg-6 mx-auto">
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="/create" class="btn btn-primary btn-lg px-4 gap-3">Get Started</a>
+            </div>
+        </div>
+    </div>
 {{end}}
