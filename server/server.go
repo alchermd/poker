@@ -2,7 +2,7 @@ package server
 
 import (
 	"context"
-	"html/template"
+	"github.com/gorilla/mux"
 	"log"
 	"net/http"
 	"os"
@@ -16,7 +16,7 @@ type Server struct {
 	srv             *http.Server
 	l               *log.Logger
 	shutdownTimeout time.Duration
-	templates       *template.Template
+	templates       templateCache
 }
 
 // Run starts the web server and handles graceful shutdown.
@@ -45,10 +45,10 @@ func (s *Server) Run() {
 
 // NewServer initializes a new server instance.
 func NewServer() *Server {
-	sm := http.NewServeMux()
+	r := mux.NewRouter()
 	srv := &http.Server{
 		Addr:    ":80",
-		Handler: sm,
+		Handler: r,
 	}
 	l := log.Default()
 
@@ -56,8 +56,9 @@ func NewServer() *Server {
 		srv:             srv,
 		l:               l,
 		shutdownTimeout: 30 * time.Second,
+		templates:       make(templateCache),
 	}
-	s.RegisterRoutes(sm)
+	s.RegisterRoutes(r)
 	s.ParseTemplates()
 	return s
 }
