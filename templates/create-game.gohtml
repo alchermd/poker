@@ -3,5 +3,41 @@
 {{define "title"}}New Game{{end}}
 
 {{define "content"}}
-    <h1>New Game Page.</h1>
+    <form method="post" action="">
+        <div class="mb-3">
+            <label for="name" class="form-label">
+                Game Name
+            </label>
+            <input type="text"
+                   name="name"
+                   class="form-control"
+                   id="name"/>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">
+                Description
+            </label>
+            <textarea id="description" name="description" class="form-control"></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="players">
+                Players
+                <button class="btn btn-sm btn-outline-secondary mx-2"
+                        id="btnAddPlayer"
+                        type="button">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </label>
+            <div id="playersList">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-lg btn-primary float-end">
+            Create
+        </button>
+    </form>
+{{end}}
+
+{{define "js"}}
+    {{template "defaultJs"}}
+    <script src="/static/js/create-game.js"></script>
 {{end}}
