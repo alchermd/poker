@@ -13,8 +13,8 @@ type createGamePayload struct {
 	players     []string
 }
 
-// CreateGame serves the HTML form for creating a game and the POST handling of the submitted data.
-func (s *Server) CreateGame(w http.ResponseWriter, r *http.Request) {
+// CreateGameHandler serves the HTML form for creating a game and the POST handling of the submitted data.
+func (s *Server) CreateGameHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
 		err := s.templates[tplCreateGame].ExecuteTemplate(w, tplCreateGame, nil)
 		if err != nil {

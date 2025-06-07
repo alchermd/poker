@@ -6,8 +6,8 @@ import (
 
 const tplHome = "home.gohtml"
 
-// Home serves the home page content.
-func (s *Server) Home(w http.ResponseWriter, r *http.Request) {
+// HomeHandler serves the home page content.
+func (s *Server) HomeHandler(w http.ResponseWriter, r *http.Request) {
 	err := s.templates[tplHome].ExecuteTemplate(w, tplHome, nil)
 	if err != nil {
 		s.l.Printf("Error writing response %q", err)
