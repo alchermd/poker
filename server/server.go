@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+	"github.com/alchermd/poker/application"
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
@@ -17,6 +18,7 @@ type Server struct {
 	l               *log.Logger
 	shutdownTimeout time.Duration
 	templates       templateCache
+	app             *application.App
 }
 
 // Run starts the web server and handles graceful shutdown.
@@ -44,7 +46,7 @@ func (s *Server) Run() {
 }
 
 // NewServer initializes a new server instance.
-func NewServer() *Server {
+func NewServer(app *application.App) *Server {
 	r := mux.NewRouter()
 	srv := &http.Server{
 		Addr:    ":80",
@@ -57,6 +59,7 @@ func NewServer() *Server {
 		l:               l,
 		shutdownTimeout: 30 * time.Second,
 		templates:       make(templateCache),
+		app:             app,
 	}
 	s.RegisterRoutes(r)
 	s.ParseTemplates()

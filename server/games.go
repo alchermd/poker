@@ -1,6 +1,7 @@
 package server
 
 import (
+	"fmt"
 	"net/http"
 )
 
@@ -35,9 +36,14 @@ func (s *Server) CreateGameHandler(w http.ResponseWriter, r *http.Request) {
 			description: r.Form.Get("description"),
 			players:     r.Form["players"],
 		}
-		s.l.Printf("Parsed payload: %#v", payload)
+		game, err := s.app.CreateGame(payload.name, payload.description, payload.players)
+		if err != nil {
+			s.l.Printf("Error creating game %q", err)
+			http.Error(w, "Error creating game", http.StatusBadRequest)
+			return
+		}
 
-		http.Redirect(w, r, "/games/1", http.StatusFound)
+		http.Redirect(w, r, fmt.Sprintf("/games/%d", game.ID), http.StatusFound)
 		return
 	}
 }
