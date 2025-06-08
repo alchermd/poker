@@ -1,9 +1,3 @@
-function init() {
-  addPlayerInput();
-  addPlayerInput();
-  addPlayerInput();
-}
-
 // TODO: DRY this up.
 function addPlayerInput() {
   const html = `<input type="text"
@@ -14,7 +8,6 @@ function addPlayerInput() {
 }
 
 $(document).ready(function () {
-  init();
   $("#btnAddPlayer").on("click", addPlayerInput);
 });
 

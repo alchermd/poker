@@ -5,6 +5,7 @@
 {{define "content"}}
     <h1>{{.Name}}</h1>
     <p class="lead">{{.Description}}</p>
+
     <hr/>
 
     <h3>
@@ -15,6 +16,7 @@
             <i class="fa fa-plus"></i>
         </button>
     </h3>
+    <div id="playersList">
     {{range .Players}}
         <input
                 type="text"
@@ -22,7 +24,10 @@
                 id="players"
                 value="{{.}}"/>
     {{end}}
+    </div>
+
     <hr/>
+
     <h3>Sessions</h3>
     <table class="table">
         <thead>
@@ -45,4 +50,9 @@
         <i class="fa fa-plus mx-2"></i>
         Log Session
     </button>
+{{end}}
+
+{{define "js"}}
+    {{template "defaultJs"}}
+    <script src="/static/js/show-game.js"></script>
 {{end}}
