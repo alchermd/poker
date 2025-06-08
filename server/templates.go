@@ -13,6 +13,9 @@ const tplPartialRoot = tplRoot + "/partials"
 const tplPartialNavbar = "navbar.gohtml"
 const tplPartialLogo = "logo.gohtml"
 
+// Modal templates
+const tplModalRoot = tplRoot + "/modals"
+
 // ParseTemplates loads the templates and caches them in-memory.
 func (s *Server) ParseTemplates() {
 	// Partial templates that are loaded for all templates.
@@ -20,6 +23,12 @@ func (s *Server) ParseTemplates() {
 		tplPartialRoot + "/" + tplPartialNavbar,
 		tplPartialRoot + "/" + tplPartialLogo,
 	}
+
+	// Modal template that are (should??) loaded for all templates.
+	tplModals := []string{
+		tplModalRoot + "/" + tplModalLogSession,
+	}
+
 	// List of templates to load and cache.
 	// TODO: Handle cases where an unknown key is used to access a template.
 	tpls := []string{
@@ -34,6 +43,7 @@ func (s *Server) ParseTemplates() {
 			tplRoot + "/" + tpl,
 		}
 		tpls = append(tplPartials, tplWithBase...)
+		tpls = append(tpls, tplModals...)
 		// Each template is key-accessible by its template name.
 		// Ex: templates/home.gohtml -> home.gohtml
 		s.templates[tpl] = template.Must(template.ParseFiles(tpls...))

@@ -45,11 +45,13 @@
             class="btn btn-sm btn-outline-secondary"
             type="button"
             data-bs-toggle="modal"
-            data-bs-target="#btnLogSessionModal"
+            data-bs-target="#modalLogSession"
     >
         <i class="fa fa-plus mx-2"></i>
         Log Session
     </button>
+
+    {{template "modalLogSession"}}
 {{end}}
 
 {{define "js"}}

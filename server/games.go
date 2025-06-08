@@ -54,6 +54,7 @@ func (s *Server) CreateGameHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 const tplShowGame = "show-game.gohtml"
+const tplModalLogSession = "log-session-modal.gohtml"
 
 // ShowGameHandler serves the details page of a specific Game.
 func (s *Server) ShowGameHandler(w http.ResponseWriter, r *http.Request) {
