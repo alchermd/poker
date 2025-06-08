@@ -13,5 +13,6 @@ const staticDir = "./static"
 func (s *Server) RegisterRoutes(router *mux.Router) {
 	router.HandleFunc("/", s.HomeHandler).Methods("GET")
 	router.HandleFunc("/create", s.CreateGameHandler).Methods("GET", "POST")
+	router.HandleFunc("/games/{id:[0-9]+}", s.ShowGameHandler).Methods("GET")
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(staticDir))))
 }

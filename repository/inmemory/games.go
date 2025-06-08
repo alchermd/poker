@@ -25,3 +25,14 @@ func (r *Repository) SaveGame(game *core.Game) (*core.Game, error) {
 		return nil, repository.ErrGameNotFound
 	}
 }
+
+// GetGame retrieves the Game with the matching ID from the in-memory map.
+func (r *Repository) GetGame(id int) (*core.Game, error) {
+	for _, g := range r.games {
+		if g.ID == id {
+			return g, nil
+		}
+	}
+
+	return nil, repository.ErrGameNotFound
+}

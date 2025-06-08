@@ -9,3 +9,9 @@ func (a *App) CreateGame(name string, description string, players []string) (*co
 	g, err := a.repo.SaveGame(g)
 	return g, err
 }
+
+// GetGame retrieves a Game instance from the database for the given ID.
+func (a *App) GetGame(id int) (*core.Game, error) {
+	g, err := a.repo.GetGame(id)
+	return g, err
+}

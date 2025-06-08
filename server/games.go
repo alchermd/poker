@@ -1,8 +1,12 @@
 package server
 
 import (
+	"errors"
 	"fmt"
+	"github.com/alchermd/poker/repository"
+	"github.com/gorilla/mux"
 	"net/http"
+	"strconv"
 )
 
 const tplCreateGame = "create-game.gohtml"
@@ -20,6 +24,7 @@ func (s *Server) CreateGameHandler(w http.ResponseWriter, r *http.Request) {
 		err := s.templates[tplCreateGame].ExecuteTemplate(w, tplCreateGame, nil)
 		if err != nil {
 			s.l.Printf("Error writing response %q", err)
+			http.Error(w, "Error writing response", http.StatusInternalServerError)
 		}
 		return
 	} else if r.Method == http.MethodPost {
@@ -44,6 +49,33 @@ func (s *Server) CreateGameHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		http.Redirect(w, r, fmt.Sprintf("/games/%d", game.ID), http.StatusFound)
+		return
+	}
+}
+
+const tplShowGame = "show-game.gohtml"
+
+// ShowGameHandler serves the details page of a specific Game.
+func (s *Server) ShowGameHandler(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+	if err != nil {
+		s.l.Printf("Cannot convert ID to int %q", err)
+		http.Error(w, "Game not found", http.StatusNotFound)
+		return
+	}
+
+	g, err := s.app.GetGame(id)
+	if errors.Is(err, repository.ErrGameNotFound) {
+		s.l.Printf("Game not found %q", err)
+		http.Error(w, "Game not found", http.StatusNotFound)
+		return
+	}
+
+	err = s.templates[tplShowGame].ExecuteTemplate(w, tplShowGame, g)
+	if err != nil {
+		s.l.Printf("Error writing response %q", err)
+		http.Error(w, "Error writing response", http.StatusInternalServerError)
 		return
 	}
 }

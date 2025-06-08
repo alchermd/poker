@@ -1,0 +1,48 @@
+{{template "base.gohtml" .}}
+
+{{define "title"}}{{.Name}}{{end}}
+
+{{define "content"}}
+    <h1>{{.Name}}</h1>
+    <p class="lead">{{.Description}}</p>
+    <hr/>
+
+    <h3>
+        Players
+        <button class="btn btn-sm btn-outline-secondary mx-2"
+                type="button"
+                id="btnAddPlayer">
+            <i class="fa fa-plus"></i>
+        </button>
+    </h3>
+    {{range .Players}}
+        <input
+                type="text"
+                class="form-control mb-2"
+                id="players"
+                value="{{.}}"/>
+    {{end}}
+    <hr/>
+    <h3>Sessions</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Blinds</th>
+            <th scope="col">Sessions Length</th>
+            <th scope="col">Big Winner</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <button
+            class="btn btn-sm btn-outline-secondary"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#btnLogSessionModal"
+    >
+        <i class="fa fa-plus mx-2"></i>
+        Log Session
+    </button>
+{{end}}

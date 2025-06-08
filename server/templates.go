@@ -21,12 +21,13 @@ func (s *Server) ParseTemplates() {
 		tplPartialRoot + "/" + tplPartialLogo,
 	}
 	// List of templates to load and cache.
+	// TODO: Handle cases where an unknown key is used to access a template.
 	tpls := []string{
 		tplHome,
 		tplCreateGame,
+		tplShowGame,
 	}
-	// For each template, we combine the partials and the template (+ base) and
-	//
+	// For each template, we combine the partials and the template (+ base)
 	for _, tpl := range tpls {
 		tplWithBase := []string{
 			tplRoot + "/" + tplBase,
