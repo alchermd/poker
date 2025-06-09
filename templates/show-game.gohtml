@@ -18,8 +18,7 @@
     </h3>
     <div id="playersList">
     {{range .Players}}
-        <input
-                type="text"
+        <input type="text"
                 class="form-control mb-2"
                 id="players"
                 value="{{.}}"/>
@@ -41,12 +40,10 @@
         <tbody>
         </tbody>
     </table>
-    <button
-            class="btn btn-sm btn-outline-secondary"
+    <button class="btn btn-sm btn-outline-secondary"
             type="button"
             data-bs-toggle="modal"
-            data-bs-target="#modalLogSession"
-    >
+            data-bs-target="#modalLogSession">
         <i class="fa fa-plus mx-2"></i>
         Log Session
     </button>
@@ -57,4 +54,5 @@
 {{define "js"}}
     {{template "defaultJs"}}
     <script src="/static/js/show-game.js"></script>
+    <script src="/static/js/log-session.js"></script>
 {{end}}

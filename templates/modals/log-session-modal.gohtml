@@ -1,61 +1,43 @@
 {{define "modalLogSession"}}
-<div class="modal fade"
-     id="modalLogSession"
-     tabIndex="-1"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5">Log Session</h1>
-                <button type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close">
-                </button>
-            </div>
-            <form id="formLogSession">
-                <div class="modal-body">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Player</th>
-                            <th scope="col">Result</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">
-                                <input type="checkbox"
-                                        class="form-check-input"
-                                        checked="checked"/>
-                            </th>
-                            <td>
-                                <input type="text"
-                                        class="form-control"
-                                        value="">
-                            </td>
-                            <td>
-                                <input type="number"
-                                        class="form-control"
-                                        value=""/>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
+    <div class="modal fade"
+         id="modalLogSession"
+         tabIndex="-1"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Log Session</h1>
                     <button type="button"
-                            class="btn btn-secondary"
-                            data-bs-dismiss="modal">
-                        Close
-                    </button>
-                    <button type="submit" class="btn btn-primary">
-                        Log
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close">
                     </button>
                 </div>
-            </form>
+                <form id="formLogSession">
+                    <div class="modal-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Player</th>
+                                <th scope="col">Result</th>
+                            </tr>
+                            </thead>
+                            <tbody id="resultsBody"></tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Log
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 {{end}}
