@@ -10,6 +10,8 @@ type Repository interface {
 	SaveGame(game *core.Game) (*core.Game, error)
 	// GetGame retrieves a Game that matches the given ID.
 	GetGame(id int) (*core.Game, error)
+	// SaveSession persists and associates the Session to the Game.
+	SaveSession(g *core.Game, s *core.Session) (*core.Session, error)
 }
 
 var ErrGameNotFound = errors.New("game not found")
