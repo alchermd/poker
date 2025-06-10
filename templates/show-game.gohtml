@@ -40,9 +40,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            There are {{.Sessions | len}} Sessions
-        </tr>
+        {{range .Sessions}}
+            <tr>
+                <td>{{.Date.Format "Jan 02, 2006"}}</td>
+                <td>5/10</td>
+                <td>1 hour</td>
+                <td>{{.BigWinner}}</td>
+            </tr>
+        {{end}}
         </tbody>
     </table>
     <button class="btn btn-sm btn-outline-secondary"

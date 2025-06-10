@@ -57,12 +57,8 @@ func (s *Server) CreateSessionHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Convert payload to Results
-	var results core.Results
-	for idx, shouldIncludePlayer := range payload.shouldIncludePlayer {
-		if shouldIncludePlayer != "checked" {
-			continue
-		}
-		player := payload.player[idx]
+	results := core.Results{}
+	for idx, player := range payload.player {
 		result := payload.result[idx]
 		results[player] = result
 	}

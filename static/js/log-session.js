@@ -50,7 +50,10 @@ $(document).ready(function () {
     const gameID = $("#gameID").val();
     fetch(`/games/${gameID}/sessions`, {
       method: "POST",
-      body: formData,
+      body: new URLSearchParams(formData).toString(),
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      }
     })
       .then(res => {
         window.location = `/games/${gameID}`;
